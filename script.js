@@ -1,32 +1,29 @@
-const trendApi = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
+const trendApi =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-const searchApi = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+const searchApi =
+  "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
-const movieList = document.querySelector('#movie-list');
+const movieList = document.querySelector("#movie-list");
 
+async function getMovie(url) {
+  let responce = await fetch(url);
+  let data = await responce.json();
 
-
-async function getMovie(url){
-    let responce = await fetch(url);
-    let data = await responce.json()
-
-    console.log(data.results)
-    showMovies(data.results)
-
+  console.log(data.results);
+  showMovies(data.results);
 }
 
+function showMovies(data) {
+  movieList.innerHTML = ``;
+  data.forEach((item) => {
+    const box = document.createElement("div");
+    box.classList.add("box");
 
-function showMovies(data){
-
-        data.forEach((item) =>{
-
-            const box = document.createElement("div");
-            box.classList.add("box");
-
-            box.innerHTML=`
+    box.innerHTML = `
             <img id="img"
-            src='https://static.toiimg.com/photo/msid-103359834/103359834.jpg'
+            src=${IMGPATH + item.poster_path}
             alt=""
           />
             <div class="overlay">
@@ -34,33 +31,34 @@ function showMovies(data){
             <div id="title-box">
 
             <div>
-              <p id="title">Movie title</p>
+              <p id="title">${item.original_title}</p>
             </div>
             <div class="div">
-              <p id="rate" >rating: 2.5</p>
+              <p id="rate" >Rating:${item.vote_average}</p>
             </div>
             </div>
 
             <div class="overview">
               <p  id="overview" >
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Totam dicta fuga numquam ipsa assumenda neque dolorem quidem
-                unde, sunt, molestiae nemo sed id placeat eaque sint laborum
-                consectetur. Ut, repudiandae!                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Totam dicta fuga numquam ipsa assumenda neque dolorem quidem
-                unde, sunt, molestiae nemo sed id placeat eaque sint laborum
-                consectetur. Ut, repudiandae!
+                ${item.overview}
               </p>
-            </div>`
+            </div>`;
 
-        //   movieList.appendChild(box)
-        movieList.appendChild(box)
-        })
+    //   movieList.appendChild(box)
+    movieList.appendChild(box);
+  });
 }
+const search = document.querySelector("#search");
+search.addEventListener("keyup", () => {
+  // console.log(search.value)
 
-
-
-
+  // if some vlaue entered in search box then only seach api function will called
+  if (search.value != "") {
+    getMovie(searchApi + search.value);
+  } else {
+    getMovie(trendApi);  // calling popular movies
+  }
+});
 
 // Initial call to call treading movie
-getMovie(trendApi)
+getMovie(trendApi);

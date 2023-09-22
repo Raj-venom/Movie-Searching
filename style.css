@@ -30,13 +30,13 @@ h1, .search{
 #search{
     width: 500px;
     padding: 10px;
+    border: 1px solid white;
+    border-radius:10px;
 }
 .row{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    
-    
 
 }
 
@@ -79,4 +79,10 @@ h1, .search{
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+::placeholder {
+    color: rgba(240, 239, 239, 0.973);
+    opacity: 1;
+  
 }
