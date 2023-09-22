@@ -34,10 +34,9 @@ function showMovies(data) {
               <p id="title">${item.original_title}</p>
             </div>
             <div class="div">
-              <p id="rate" >Rating:${item.vote_average}</p>
+              <p id="rate" >Rating:${(item.vote_average).toFixed(1)}</p>
             </div>
             </div>
-
             <div class="overview">
               <p  id="overview" >
                 ${item.overview}
