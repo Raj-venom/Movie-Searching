@@ -21,9 +21,15 @@ function showMovies(data) {
     const box = document.createElement("div");
     box.classList.add("box");
 
+    let imgLink;
+    if(item.poster_path == null){
+      imgLink = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+    }else{
+      imgLink = `${IMGPATH + item.poster_path}`
+    }
     box.innerHTML = `
             <img id="img"
-            src=${IMGPATH + item.poster_path}
+            src=${imgLink}
             alt=""
           />
             <div class="overlay">
