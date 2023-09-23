@@ -10,10 +10,13 @@
 }
 
 .heading{
-    color:rgb(219, 204, 204);
-    border: 2px solid white;
-    height: 150px;
-    margin: 10px;
+    border: 2px solid rgb(206, 122, 122);
+    height: 140px;
+    /* margin: 10px; */
+
+    position: fixed;
+    width: 100%;
+    top:0%;
 }
 
 .main{
@@ -30,10 +33,12 @@ h1, .search{
 #search{
     width: 500px;
     padding: 10px;
-    border: 1px solid white;
+    border: 2px solid rgb(206, 122, 122);
+
     border-radius:10px;
 }
 .row{
+    margin-top: 170px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

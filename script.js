@@ -2,8 +2,7 @@ const trendApi =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-const searchApi =
-  "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+const searchApi = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
 const movieList = document.querySelector("#movie-list");
 
@@ -11,7 +10,7 @@ async function getMovie(url) {
   let responce = await fetch(url);
   let data = await responce.json();
 
-  console.log(data.results);
+  // console.log(data.results);
   showMovies(data.results);
 }
 
@@ -21,6 +20,7 @@ function showMovies(data) {
     const box = document.createElement("div");
     box.classList.add("box");
 
+    // image link conditon if no poster_path(image) is found 
     let imgLink;
     if(item.poster_path == null){
       imgLink = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
